@@ -11,3 +11,6 @@ Pour cette SAE nous avons décidé de créer une bataille navale en ligne, deux 
 
 ## Principe du jeu
 
+Nous avons donc réaliser notre bataille navale en java, avec une classe Bateau permettant de créer des bateaux en entrant leur coordonnée de début puis de fin. Puis une classe Plateau qui affiche deux plateaux, un contenant les bateaux du joueur puis le second qui marquera au fur et à mesure les attaques qu'il a envoyé au joueur adverse. Le but est donc que un des joueur est touché coulé tous les bateaux du joueur adverse, représentés sur notre plateau par des #.  
+
+## Comment avons nous procédé
