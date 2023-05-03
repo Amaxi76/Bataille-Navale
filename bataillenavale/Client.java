@@ -8,6 +8,8 @@ public class Client
 {
 	public static void main(String[] arg)
 	{
+		boolean partieEnCours = true;
+		boolean ecriture      = false;
 		try
 		{
 			Socket toServer = new Socket ( "penguin", 9000 );
@@ -23,20 +25,33 @@ public class Client
 			System.out.println ( in.readLine ( ) );
 			System.out.println ( in.readLine ( ) );
 
+			System.out.println ( in.readLine ( ) );
+
 			String m1 = " ";
 			String strServ;
 			do
 			{
-				//System.out.println ( in.readLine() );
-				do System.out.println(in.readLine()); while (in.ready());
-				//strServ = in.readLine();
-				//if ( strServ.equals("true") )
-				//{
-				m1 = Clavier.lireString();
-				out.println(m1);
-				//}
+				String sRet;
+				while (in.ready())
+				{
+					sRet = in.readLine();
+					if ( sRet.equals("true" )) ecriture = true;
+					else
+					{
+						if ( sRet.equals("false")) ecriture = false;
+						else                       System.out.println(sRet);
+					}
+
+					if ( sRet.equals("La partie est terminée.")) partieEnCours = false;
+				}
+				if ( ecriture )
+				{
+					System.out.println("test écriture");
+					m1 = Clavier.lireString();
+					out.println(m1);
+				}
 			}
-			while ( !m1.equals ( "Q" ) );
+			while ( partieEnCours );
 			
 			in.close();
 			out.close();

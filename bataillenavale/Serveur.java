@@ -19,6 +19,8 @@ public class Serveur
 			while ( true )
 			{
 				System.out.println ( "En attente des clients" );
+
+				// Arrivée du 1er joueur
 				Socket       clientUn   = ss.accept();
 				System.out.println ("Client 1 accepté");
 	
@@ -29,6 +31,7 @@ public class Serveur
 				outUn     .println ( "Connecté en tant que joueur 1. En attente du second joueur..." );
 				System.out.println ( "Joueur 1 arrivé" );
 
+				// Arrivée du 2eme joueur
 				Socket       clientDeux = ss.accept();
 				System.out.println("Client 2 accepté");
 
@@ -46,24 +49,30 @@ public class Serveur
 
 				System.out.println ("test 1 : debut du jeu");
 
+				// Le joueur 1 place ses bateaux
+				outDeux.println("Le joueur 1 place ses bateaux...");
 				placerBateau(1, inUn  , outUn  );
+				
+				// Le joueur 2 place ses bateaux
+				outUn  .println("Le joueur 2 place ses bateaux...");
 				placerBateau(2, inDeux, outDeux);
 				
-				String messageUn, messageDeux;
-				messageUn = messageDeux = "";
-				do
-				{
-					outUn  .println("true");
-					messageUn = inUn.readLine();
-					System.out.println("Le client a dit : " + messageUn);
-					outUn  .println("false");
+				
+				// String messageUn, messageDeux;
+				// messageUn = messageDeux = "";
+				// do
+				// {
+				// 	outUn  .println("true");
+				// 	messageUn = inUn.readLine();
+				// 	System.out.println("Le client a dit : " + messageUn);
+				// 	outUn  .println("false");
 
-					outDeux.println("true");
-					messageDeux = inDeux.readLine();
-					System.out.println("The client said : " + messageDeux);
-					outDeux.println("false");
-				}
-				while (messageUn != null && !messageUn.equals("") && messageDeux != null && !messageDeux.equals("") );
+				// 	outDeux.println("true");
+				// 	messageDeux = inDeux.readLine();
+				// 	System.out.println("The client said : " + messageDeux);
+				// 	outDeux.println("false");
+				// }
+				// while (messageUn != null && !messageUn.equals("") && messageDeux != null && !messageDeux.equals("") );
 
 				inUn.close();
 				outUn.close();
@@ -83,49 +92,49 @@ public class Serveur
 
 	}
 
-	public static void placerBateau(int joueur, BufferedReader in, PrintWriter out)
+	public static void placerBateau ( int joueur, BufferedReader in, PrintWriter out )
 	{
 		String posDep, posArr;
 		posDep = posArr = "   ";
-
-		ArrayList<Bateau> alBateaux = Serveur.jeu.getNbBateauNonPlace ( joueur );
 		try
 		{
-			for ( Bateau b : alBateaux )
+			for ( Bateau b : Serveur.jeu.getNbBateauNonPlace ( joueur ) )
 			{
-				System.out.println("test");
 				do
 				{
 					do
 					{
-						System.out.println("Taille de la liste : " + Serveur.jeu.getNbBateauNonPlace(joueur).size());
-						for (Bateau bat : Serveur.jeu.getNbBateauNonPlace(joueur)) System.out.println("Taille du bateau : " + bat.getTaille());
-						System.out.println("On veut un bateau de taille : " + b.getTaille());
-
 						out.println ( Serveur.jeu.toString ( joueur ) );
 						out.println ( "Rentrer les coordonnées de départ du bateau de taille " + b.getTaille ( ) );
-						posDep = in.readLine ( );
-						System.out.println("Entrée : " + posDep);
+						out.println ( "true"  );
+						posDep = in.readLine();
+						/*do
+						{
+							posDep = in.readLine ( );
+							System.out.println(posDep + !in.ready());
+						} while (in.ready());*/
+						out.println ( "false" );
+						
 						if ( posDep.length ( ) != 3 ) out.println ( "Erreur de format. Exemples : A02, E04, H10" );
 					} while ( posDep != null && posDep.length ( ) != 3 || ! ( ( posDep.charAt ( 0 ) >= 'A' && posDep.charAt ( 0 ) <= 'J' ) && ( posDep.charAt ( 1 ) == '0' || posDep.charAt ( 1 ) == '1' ) && ( posDep.charAt ( 2 ) >= '0' && posDep.charAt ( 2 ) <= '9' ) ) );
 
 					do
 					{
-						out.println("Rentrer les coordonnées finales du bateau de taille " + b.getTaille() + " commençant en " + posDep );
-						posArr = in.readLine();
-						System.out.println("Entrée2 : " + posArr);
-						if (posArr.length() != 3) out.println("Erreur de format. Exemples : A02, E04, H10");
-					} while (posDep != null && posArr.length() != 3 || !((posArr.charAt(0) >= 'A' && posArr.charAt(0) <= 'J') && (posArr.charAt(1) == '0' || posArr.charAt(1) == '1') && (posArr.charAt(2) >= '0' && posArr.charAt(2) <= '9')) && posDep != posArr);
+						out.println ( "Rentrer les coordonnées finales du bateau de taille " + b.getTaille ( ) + " commençant en " + posDep );
+						out.println ( "true" );
+						do posArr = in.readLine ( ); while (!in.ready());
+						out.println ( "false" );
+						if ( posArr.length ( ) != 3) out.println ( "Erreur de format. Exemples : A02, E04, H10" );
+					} while ( posDep != null && posArr.length ( ) != 3 || !( ( posArr.charAt ( 0 ) >= 'A' && posArr.charAt ( 0 ) <= 'J' ) && ( posArr.charAt ( 1 ) == '0' || posArr.charAt ( 1 ) == '1' ) && ( posArr.charAt ( 2 ) >= '0' && posArr.charAt ( 2 ) <= '9' ) ) && posDep != posArr );
 
 					System.out.println("Joueur " + joueur + " créé un bateau de taille " + b.getTaille() + " de " + new Coordonnees ( posDep.charAt(0), Integer.parseInt("" + posDep.charAt(1) + posDep.charAt(2)) ) + new Coordonnees ( posArr.charAt(0), Integer.parseInt("" + posArr.charAt(1) + posArr.charAt(2)) ));
 					
-					System.out.println("SORT");
 				} while (!Serveur.jeu.placerBateau ( joueur, new Coordonnees ( posDep.charAt(0), Integer.parseInt("" + posDep.charAt(1) + posDep.charAt(2)) ) , new Coordonnees ( posArr.charAt(0), Integer.parseInt("" + posArr.charAt(1) + posArr.charAt(2)) ), b.getTaille()));
-				alBateaux = Serveur.jeu.getNbBateauNonPlace(joueur);
-				System.out.println("Vous avez créé un bateau de " + posDep + " à " + posArr);
-				out.println(Serveur.jeu.toString(joueur));
+				
+				out.println ( Serveur.jeu.toString ( joueur ) );
+				out.println ( "Vous avez créé un bateau de " + posDep + " à " + posArr );
 			}
 		}
-		catch ( IOException e ) { System.out.println("Erreur"); }
+		catch ( IOException e ) { System.out.println ( "Erreur" ); }
 	}
 }
