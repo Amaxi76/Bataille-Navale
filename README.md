@@ -15,6 +15,6 @@ Nous avons donc réalisé notre bataille navale en java, avec une classe Bateau 
 
 ## Comment avons nous procédé
 
-
+Nos dossiers **.java** sont donc en relation avec notre serveur 
 
 ## Problème rencontré
