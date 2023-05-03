@@ -5,7 +5,7 @@
 **Année :** 2023   
 **IUT Le Havre - SAE** 
 
-### 1. Introduction
+## Introduction
 
 ***
 
