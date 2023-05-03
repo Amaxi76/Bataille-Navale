@@ -1,6 +1,5 @@
 package bataillenavale.metier;
 
-import bataillenavale.metier.Coordonnees;
 import java.util.ArrayList;
 
 public class Bateau
@@ -28,8 +27,6 @@ public class Bateau
 
 	public boolean placerBateau ( Coordonnees posDebut, Coordonnees posFin, Bateau[] ensBateaux )
 	{
-		//System.out.println("val : " + (Math.abs ( posDebut.getLig ( ) - posFin.getLig ( ) ) + Math.abs ( posDebut.getCol ( ) - posFin.getCol ( ) )));
-
 		if ( Math.abs ( posDebut.getLig ( ) - posFin.getLig ( ) ) + Math.abs ( posDebut.getCol ( ) - posFin.getCol ( ) ) + 1 != this.longueur ) return false;
 
 		this.posDebut = posDebut;
@@ -38,9 +35,8 @@ public class Bateau
 		for ( Bateau b : ensBateaux )
 			for ( Coordonnees coord : b.getCoordonnees() )
 				for ( Coordonnees cos : this.getCoordonnees() )
-					if (coord.getLig() == cos.getLig() && coord.getCol() == cos.getCol() && b != this)
+					if ( coord.getLig ( ) == cos.getLig ( ) && coord.getCol ( ) == cos.getCol ( ) && b != this )
 					{
-						System.out.println("test 1");
 						this.posDebut = new Coordonnees ( 'A', 0 );
 						this.posFin   = new Coordonnees ( 'A', 0 );
 						return false;
@@ -54,19 +50,19 @@ public class Bateau
 		this.coorTouche.add ( vise );
 	}
 	
-	public boolean estTouche(Coordonnees c)
+	public boolean estTouche ( Coordonnees c )
 	{
-		for (Coordonnees cos : this.getCoordonnees())
-			if (c.getLig() == cos.getLig() && c.getCol() == cos.getCol()) return true;
+		for ( Coordonnees cos : this.getCoordonnees ( ) )
+			if (c.getLig ( ) == cos.getLig ( ) && c.getCol ( ) == cos.getCol ( ) ) return true;
 		return false;
 	}
 
 	public boolean estCoule ( )
 	{
-		return ( this.coorTouche.size() == this.longueur );
+		return ( this.coorTouche.size ( ) == this.longueur );
 	}
 
-	public Coordonnees[] getCoordonnees ()
+	public Coordonnees[] getCoordonnees ( )
 	{
 		Coordonnees[] tabCoordonnees = new Coordonnees[this.longueur];
 
@@ -83,9 +79,9 @@ public class Bateau
 			else 
 			{
 				if ( this.posDebut.getLig ( ) < this.posFin.getLig ( ) )
-					tabCoordonnees[cpt] = new Coordonnees( this.posDebut.getCol ( ) , this.posDebut.getLig ( ) + cpt );
+					tabCoordonnees[cpt] = new Coordonnees ( this.posDebut.getCol ( ) , this.posDebut.getLig ( ) + cpt );
 				else
-					tabCoordonnees[cpt] = new Coordonnees( this.posDebut.getCol ( ) , this.posDebut.getLig ( ) - cpt );
+					tabCoordonnees[cpt] = new Coordonnees ( this.posDebut.getCol ( ) , this.posDebut.getLig ( ) - cpt );
 			}
 		}
 
