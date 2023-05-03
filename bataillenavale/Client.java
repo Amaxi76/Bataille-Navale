@@ -9,10 +9,10 @@ public class Client
 	public static void main(String[] arg)
 	{
 		boolean partieEnCours = true;
-		boolean ecriture      = false;
+		boolean ecriture      = true;
 		try
 		{
-			Socket toServer = new Socket ( "penguin", 9000 );
+			Socket toServer = new Socket ( "DESKTOP-LSMERC2", 9000 );
 
 			System.out.println ( "connexion au serveur..." );
 
@@ -20,39 +20,43 @@ public class Client
 			BufferedReader in  = new BufferedReader ( new InputStreamReader ( toServer.getInputStream() ) );
 
 			System.out.println ( "connecté..." );
-
+			
 			// Bannière
 			System.out.println ( in.readLine ( ) );
-			System.out.println ( in.readLine ( ) );
 
-			System.out.println ( in.readLine ( ) );
+			boolean debut = false;
+			while (!debut)
+				if (in.readLine().equals("DEBUT")) debut = true;
 
-			String m1 = " ";
-			String strServ;
-			do
+			boolean tour = false;
+			while (!tour)
 			{
+				String sRet = in.readLine();
+				if (sRet.equals("TOUR")) tour = true;
+				else                     System.out.println(sRet);
+			}
+
+			while ( debut && partieEnCours && tour)
+			{
+				try
+				{
+					Thread.sleep(200);
+				}
+				catch (Exception e) {}
+				
 				String sRet;
 				while (in.ready())
 				{
 					sRet = in.readLine();
-					if ( sRet.equals("true" )) ecriture = true;
-					else
-					{
-						if ( sRet.equals("false")) ecriture = false;
-						else                       System.out.println(sRet);
-					}
+
+					System.out.println(sRet);
 
 					if ( sRet.equals("La partie est terminée.")) partieEnCours = false;
 				}
-				if ( ecriture )
-				{
-					System.out.println("test écriture");
-					m1 = Clavier.lireString();
-					out.println(m1);
-				}
+
+				out.println ( Clavier.lireString ( ) );
 			}
-			while ( partieEnCours );
-			
+
 			in.close();
 			out.close();
 
@@ -61,7 +65,7 @@ public class Client
 
 		catch (IOException ioe)
 		{
-			System.out.println("Erreur");
+			System.out.println("Erreur : \n" + ioe);
 		}
 	}
 }

@@ -102,7 +102,7 @@ public class Plateau
 		
 		for (int lig = 0 ; lig < tab.length ; lig++)
 		{
-			sRet += "| " + String.format( "%2d",lig+1) + " ";
+			sRet += "| " + String.format( "%02d",lig+1) + " ";
 			for (int col = 0 ; col < tab.length ; col++)
 				sRet += "| " + tab[lig][col] + " ";
 
@@ -115,7 +115,11 @@ public class Plateau
 
 	public String toString()
 	{
-		return this.afficherTableau(this.pltAttaques) + "\n----------------------------------------------\n\n" + this.afficherTableau(this.pltBateaux);
+		return "Vos attaques :"                                 + "\n"    +
+		       this.afficherTableau(this.pltAttaques)           + "\n"    +
+		       "----------------------------------------------" + "\n\n"  +
+			   "Vos bateaux"                                    + "\n"    +
+		       this.afficherTableau(this.pltBateaux);
 	}
 
 	public void initialiserTableau(char[][] tab)
@@ -123,5 +127,16 @@ public class Plateau
 		for (int lig = 0 ; lig < tab.length ; lig++)
 			for (int col = 0 ; col < tab.length ; col++)
 				tab[lig][col] = ' ';
+	}
+
+	public boolean partieTerminee ( )
+	{
+		boolean partieTerminee = true;
+
+		for ( Bateau b : this.bateaux )
+			if ( !b.estCoule() )
+				partieTerminee = false;
+		
+		return partieTerminee;
 	}
 }

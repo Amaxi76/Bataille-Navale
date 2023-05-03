@@ -18,6 +18,11 @@ public class Jeu
 		}
 	}
 
+	public boolean partieTerminee()
+	{
+		return this.ensPlateaux[0].partieTerminee() || this.ensPlateaux[1].partieTerminee();
+	}
+	
 	public boolean estTouche(Coordonnees c, Plateau plt)
 	{
 		if (plt.equals(this.ensPlateaux[0]))
