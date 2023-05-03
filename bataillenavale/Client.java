@@ -19,7 +19,7 @@ public class Client
 
 			System.out.println ( "connecté..." );
 
-			// Banière
+			// Bannière
 			System.out.println ( in.readLine ( ) );
 			System.out.println ( in.readLine ( ) );
 
@@ -28,14 +28,15 @@ public class Client
 			do
 			{
 				//System.out.println ( in.readLine() );
-				strServ = in.readLine();
-				if ( strServ.equals("true") )
-				{
-					m1 = Clavier.lireString();
-					out.println(m1);
-				}
+				do System.out.println(in.readLine()); while (in.ready());
+				//strServ = in.readLine();
+				//if ( strServ.equals("true") )
+				//{
+				m1 = Clavier.lireString();
+				out.println(m1);
+				//}
 			}
-			while ( !m1.equals ( "" ) );
+			while ( !m1.equals ( "Q" ) );
 			
 			in.close();
 			out.close();
@@ -47,9 +48,5 @@ public class Client
 		{
 			System.out.println("Erreur");
 		}
-		
-
-		
-
 	}
 }

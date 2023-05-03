@@ -16,6 +16,6 @@ public class Coordonnees
 	
 	public String toString ( )
 	{
-		return this.col + "," + this.lig;
+		return "" + this.col + this.lig;
 	}
 }

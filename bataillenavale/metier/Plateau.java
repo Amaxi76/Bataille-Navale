@@ -97,7 +97,7 @@ public class Plateau
 
 	public String afficherTableau(char[][] tab)
 	{
-		String sLigne= "+----+---+---+---+---+---+---+---+---+---+---+";
+		String sLigne =          "+----+---+---+---+---+---+---+---+---+---+---+";
 		String sRet   = sLigne + "\n|    | A | B | C | D | E | F | G | H | I | J | "+"\n"+sLigne+"\n";
 		
 		for (int lig = 0 ; lig < tab.length ; lig++)

@@ -58,7 +58,7 @@ public class Jeu
 		if (joueur == 1)
 			return this.ensPlateaux[0].toString();
 		else
-			return this.ensPlateaux[0].toString();
+			return this.ensPlateaux[1].toString();
 	}
 		
 	public static void main(String[] args)
@@ -92,5 +92,8 @@ public class Jeu
 		System.out.println(jeu.attaquer(1, new Coordonnees('A', 3)));
 		System.out.println(jeu.attaquer(1, new Coordonnees('A', 4)));
 		System.out.println(jeu.toString(1));
+
+		System.out.println("Joueur 2");
+		System.out.println(jeu.toString(2));
 	}
 }
