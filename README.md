@@ -1,6 +1,6 @@
 # sae_2.03_grp_08
 
-**Nom :** Yanis Verdier / Maximilien Lesterlin / Célia Antunes   
+**Nom :** Yanis Verdier | Maximilien Lesterlin | Célia Antunes   
 **Groupe :** B équipe 08   
 **Année :** 2023   
 **IUT Le Havre - SAE** 
