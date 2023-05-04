@@ -43,8 +43,8 @@ public class Serveur
 			System.out.println ( "Joueur 2 arrivé" );
 
 			// Début de partie
-			outUn  .println("DEBUT");
-			outDeux.println("DEBUT");
+			outUn  .println("ATTENTE");
+			outDeux.println("ATTENTE");
 			outUn  .println("Adversaire trouvé. La partie commence.");
 			outDeux.println("Adversaire trouvé. La partie commence.");
 			Serveur.jeu = new Jeu();
@@ -52,23 +52,35 @@ public class Serveur
 			System.out.println ("test 1 : debut du jeu");
 
 			// Le joueur 1 place ses bateaux
-			outUn.println("TOUR");
 			outDeux.println("Le joueur 1 place ses bateaux...");
+			outDeux.println("ATTENTE");
 			placerBateau(1, inUn  , outUn  );
+			outDeux.println("ATTENTE");
 			
 			// Le joueur 2 place ses bateaux
-			outDeux.println("TOUR");
 			outUn  .println("Le joueur 2 place ses bateaux...");
+			outUn.  println("ATTENTE");
 			placerBateau(2, inDeux, outDeux);
+			outUn.  println("ATTENTE");
 
+			outUn  .println("Fin de la phase de préparation. Début de la phase d'attaque...");
+			outDeux.println("Fin de la phase de préparation. Début de la phase d'attaque...");
+
+			System.out.println ( "Etat de la partie : " + Serveur.jeu.partieTerminee ( ) );
+
+			boolean partieFinie = Serveur.jeu.partieTerminee ( );
 			
-			while ( Serveur.jeu.partieTerminee ( ) )
+			while ( partieFinie )
 			{
 				attaquer ( 1, inUn, outUn );
 
 				if ( !Serveur.jeu.partieTerminee ( ) )
 					attaquer ( 2, inDeux, outDeux );
+
+				partieFinie = Serveur.jeu.partieTerminee ( );
 			}
+
+			System.out.println ( "Etat de la partie 2 : " + Serveur.jeu.partieTerminee ( ) );
 			
 			if ( Serveur.jeu.partieTerminee ( ) )
 			{

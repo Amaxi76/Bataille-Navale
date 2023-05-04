@@ -12,7 +12,7 @@ public class Client
 		boolean ecriture      = true;
 		try
 		{
-			Socket toServer = new Socket ( "DESKTOP-LSMERC2", 9000 );
+			Socket toServer = new Socket ( "penguin", 9000 );
 
 			System.out.println ( "connexion au serveur..." );
 
@@ -24,7 +24,7 @@ public class Client
 			// Bannière
 			System.out.println ( in.readLine ( ) );
 
-			boolean debut = false;
+			/*boolean debut = false;
 			while (!debut)
 				if (in.readLine().equals("DEBUT")) debut = true;
 
@@ -34,23 +34,33 @@ public class Client
 				String sRet = in.readLine();
 				if (sRet.equals("TOUR")) tour = true;
 				else                     System.out.println(sRet);
-			}
+			}*/
 
-			while ( debut && partieEnCours && tour)
+			boolean attente = true;
+			
+
+			while ( partieEnCours)
 			{
-				try
+				while (attente)
 				{
-					Thread.sleep(200);
+					attendre();
+					System.out.println("coucou max");
+					String sRet = in.readLine();
+					if (sRet.equals("ATTENTE")) {
+						attente = !attente; }
+					else                        System.out.println(sRet);
 				}
-				catch (Exception e) {}
+
+				
+				attendre();
 				
 				String sRet;
-				while (in.ready())
+				while ( in.ready() || attente)
 				{
 					sRet = in.readLine();
 
-					System.out.println(sRet);
-
+					if (sRet.equals("ATTENTE")) attente = !attente;
+					else                        System.out.println(sRet);
 					if ( sRet.equals("La partie est terminée.")) partieEnCours = false;
 				}
 
@@ -67,5 +77,14 @@ public class Client
 		{
 			System.out.println("Erreur : \n" + ioe);
 		}
+	}
+
+	public static void attendre()
+	{
+		try
+		{
+			Thread.sleep(200);
+		}
+		catch (Exception e) {}
 	}
 }
