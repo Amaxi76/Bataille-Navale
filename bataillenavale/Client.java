@@ -12,7 +12,7 @@ public class Client
 		boolean ecriture      = true;
 		try
 		{
-			Socket toServer = new Socket ( "penguin", 9000 );
+			Socket toServer = new Socket ( "MacBook-Pro-de-Maximilien.local", 9000 );
 
 			System.out.println ( "connexion au serveur..." );
 
@@ -64,7 +64,8 @@ public class Client
 					if ( sRet.equals("La partie est terminée.")) partieEnCours = false;
 				}
 
-				out.println ( Clavier.lireString ( ) );
+				if ( !attente )
+					out.println ( Clavier.lireString ( ) );
 			}
 
 			in.close();
