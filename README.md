@@ -15,7 +15,7 @@ Nous avons donc réalisé notre bataille navale en java, avec une classe Bateau 
 
 ## Comment avons nous procédé
 
-Nos dossiers **.java** sont donc en relation avec notre serveur, qui permet aux deux joueurs d'échanger, et de jouer chacun leur tour. Les joueurs peuvent se connecter indépendamment, et une fois que le serveur les a accepté, la partie peut commencer.   
+Nos fichiers **.java** sont donc en relation avec notre serveur, qui permet aux deux joueurs d'échanger, et de jouer chacun leur tour. Les joueurs peuvent se connecter indépendamment, et une fois que le serveur les a accepté, la partie peut commencer.   
 
 Le joueur peut rentrer les coordonnées de ses bateaux sur son plateau. Lors de la création des bateaux plusieurs test sont effectués afin d'éviter le plus d'erreurs possible.   
 Nos bateaux, par exemple ne peuvent pas se croiser, pour cela, lorsque nous créons un nouveau bateau, nous regardons dans notre *ArrayList* où les coordonnées sont stockées, s'ils sont déjà utilisées ou non. Si l'une des coordonnées est déjà présente le bateau ne pourra être créé.   
