@@ -50,7 +50,7 @@ public class Jeu
 			return this.ensPlateaux[1].getNbBateauNonPlace();
 	}
 
-	public boolean attaquer(int joueur, Coordonnees c)
+	public int attaquer(int joueur, Coordonnees c)
 	{
 		if (joueur == 1)
 			return this.ensPlateaux[0].attaquer(c);

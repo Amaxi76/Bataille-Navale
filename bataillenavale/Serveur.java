@@ -1,5 +1,4 @@
-// Soucis : à la fin de la création des bateaux du joueur 2, le dernier toString ne s'affiche pas ----> LE SERVEUR CRASH / S'ETEINT ?
-
+// Problème avec le false droit ou pas 
 package bataillenavale;
 
 import java.net.*;
@@ -70,12 +69,19 @@ public class Serveur
 
 			boolean partieFinie = Serveur.jeu.partieTerminee ( );
 			
-			while ( partieFinie )
+			while ( !partieFinie )
 			{
+				outDeux.println("ATTENTE");
 				attaquer ( 1, inUn, outUn );
+				outDeux.println("ATTENTE");
 
 				if ( !Serveur.jeu.partieTerminee ( ) )
+				{
+					outUn.println("ATTENTE");
 					attaquer ( 2, inDeux, outDeux );
+					outUn.println("ATTENTE");
+				}
+					
 
 				partieFinie = Serveur.jeu.partieTerminee ( );
 			}
@@ -118,14 +124,11 @@ public class Serveur
 					do
 					{
 						out.println ( "Entrez les coordonnées de départ du bateau de taille " + b.getTaille ( ) );
-						//out.println ( "true"  );
-						//posDep = in.readLine();
 						do
 						{
 							posDep = in.readLine ( );
 							System.out.println(posDep + !in.ready());
 						} while (in.ready());
-						//out.println ( "false" );
 						
 						if ( posDep.length ( ) != 3 ) out.println ( "Erreur de format. Exemples : A02, E04, H10" );
 					} while ( posDep != null && posDep.length ( ) != 3 || ! ( ( posDep.charAt ( 0 ) >= 'A' && posDep.charAt ( 0 ) <= 'J' ) && ( posDep.charAt ( 1 ) == '0' || posDep.charAt ( 1 ) == '1' ) && ( posDep.charAt ( 2 ) >= '0' && posDep.charAt ( 2 ) <= '9' ) ) );
@@ -133,10 +136,7 @@ public class Serveur
 					do
 					{
 						out.println ( "Entrez les coordonnées finales du bateau de taille " + b.getTaille ( ) + " commençant en " + posDep );
-						//out.println ( "true" );
-						//do posArr = in.readLine ( ); while (!in.ready());
 						posArr = in.readLine();
-						//out.println ( "false" );
 						if ( posArr.length ( ) != 3) out.println ( "Erreur de format. Exemples : A02, E04, H10" );
 					} while ( posDep != null && posArr.length ( ) != 3 || !( ( posArr.charAt ( 0 ) >= 'A' && posArr.charAt ( 0 ) <= 'J' ) && ( posArr.charAt ( 1 ) == '0' || posArr.charAt ( 1 ) == '1' ) && ( posArr.charAt ( 2 ) >= '0' && posArr.charAt ( 2 ) <= '9' ) ) && posDep != posArr );
 
@@ -154,23 +154,30 @@ public class Serveur
 		//Linux on peut écrire même si on a pas la main alors que sur windowns on ne peut pas du tout écrire
 		String pos;
 		pos = "";
+		int resAtk;
 		try
 		{
 			do
 			{
-				//out  .println("true");
 				do
 				{
+					out.println(Serveur.jeu.toString(joueur));
 					out.println("Entrez les coordonnées de votre attaque.");
 					pos = in.readLine();
 					if ( pos.length ( ) != 3) out.println ( "Erreur de format. Exemples : A02, E04, H10" );
 				} while ( pos != null && pos.length ( ) != 3);
 				
-				Serveur.jeu.attaquer(joueur, new Coordonnees ( pos.charAt(0), Integer.parseInt("" + pos.charAt(1) + pos.charAt(2)) ));
-				//outUn  .println("false");
+				resAtk = Serveur.jeu.attaquer(joueur, new Coordonnees ( pos.charAt(0), Integer.parseInt("" + pos.charAt(1) + pos.charAt(2)) ));
+				
+				out.println(Serveur.jeu.toString(joueur));
+				if (resAtk == 2)
+					out.println("Touché !");
+				else
+					if (resAtk == 1)
+						out.println("Plouf.");
 
 			}
-			while ( Serveur.jeu.partieTerminee() );
+			while ( resAtk == 0 || resAtk == 2);
 		}
 		catch ( IOException e ) { System.out.println ( "Erreur :\n" + e ); }
 	}

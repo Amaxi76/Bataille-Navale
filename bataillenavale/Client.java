@@ -36,29 +36,30 @@ public class Client
 				else                     System.out.println(sRet);
 			}*/
 
+			// Le client attend dès le début
 			boolean attente = true;
 			
-
-			while ( partieEnCours)
+			// Tant que la partie est en cours on lui demande ces actions
+			while ( partieEnCours )
 			{
-				while (attente)
+				// tant qu'il est en attente, on lui demande d'attendre et de lire s'il recoit de ne plus attendre
+				// sinon on affiche ce qu'on recoit de la part du serveur
+				while ( attente )
 				{
 					attendre();
-					System.out.println("coucou max");
 					String sRet = in.readLine();
 					if (sRet.equals("ATTENTE")) {
 						attente = !attente; }
 					else                        System.out.println(sRet);
 				}
 
-				
 				attendre();
 				
 				String sRet;
-				while ( in.ready() || attente)
+
+				while ( in.ready() && !attente )
 				{
 					sRet = in.readLine();
-
 					if (sRet.equals("ATTENTE")) attente = !attente;
 					else                        System.out.println(sRet);
 					if ( sRet.equals("La partie est terminée.")) partieEnCours = false;

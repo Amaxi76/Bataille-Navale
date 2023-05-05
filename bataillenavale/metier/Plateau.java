@@ -1,3 +1,9 @@
+// inversion des bateaux coulés
+// "vous avez créé"
+// bateaux diagonale
+// si joueur 1 touche, il rejoue LOGIQUE mais doit afficher pour joueur 2 ou il a touché
+// affichage des attaques de l'adversaire
+
 package bataillenavale.metier;
 
 import java.util.ArrayList;
@@ -23,9 +29,10 @@ public class Plateau
 		this.attaques    = new ArrayList<>();
 	}
 
-	public boolean attaquer(Coordonnees c)
+	public int attaquer(Coordonnees c)
 	{
-		if (c.getLig()-1 > Plateau.TAILLE || c.getCol() > (char)('A' + Plateau.TAILLE) || this.attaques.contains(c)) return false;
+		int iRet = 0;
+		if (c.getLig()-1 > Plateau.TAILLE || c.getCol() > (char)('A' + Plateau.TAILLE) || this.attaques.contains(c)) return 0;
 
 		if (this.jeu.estTouche(c, this))
 		{
@@ -36,18 +43,21 @@ public class Plateau
 					if (c.getLig() == cos.getLig() && c.getCol() == cos.getCol())
 						b.ajouterTouche(c);
 				
+				System.out.println(b.estCoule());
 				if (b.estCoule())
 					for (Coordonnees cos : b.getCoordonnees())
 						this.pltAttaques[cos.getLig()-1][cos.getCol() - 'A'] = '#';
 			}
-
+			iRet = 2;
 		}
 		else
-			this.pltAttaques[c.getLig()][c.getCol() - 'A'] = 'O';
+		{
+			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'O';
+			iRet = 1;
+		}
 		
-
 		this.attaques.add(c);
-		return true;
+		return iRet;
 	}
 
 	public void initialiserBateaux(int l1, int l2, int l3, int l4, int l5)
