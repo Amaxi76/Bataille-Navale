@@ -65,6 +65,15 @@ public class Jeu
 		else
 			return this.ensPlateaux[1].toString();
 	}
+
+	public Bateau[] getBateau(Plateau plt)
+	{
+		if (plt.equals(ensPlateaux[0]))
+			return ensPlateaux[1].getBateau();
+		else
+			return ensPlateaux[0].getBateau();
+	}
+
 		
 	public static void main(String[] args)
 	{

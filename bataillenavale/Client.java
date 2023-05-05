@@ -12,7 +12,7 @@ public class Client
 		boolean ecriture      = true;
 		try
 		{
-			Socket toServer = new Socket ( "MacBook-Pro-de-Maximilien.local", 9000 );
+			Socket toServer = new Socket ( "DESKTOP-LSMERC2", 9000 );
 
 			System.out.println ( "connexion au serveur..." );
 
@@ -46,7 +46,7 @@ public class Client
 				// sinon on affiche ce qu'on recoit de la part du serveur
 				while ( attente )
 				{
-					attendre();
+					//attendre();
 					String sRet = in.readLine();
 					if (sRet.equals("ATTENTE")) {
 						attente = !attente; }

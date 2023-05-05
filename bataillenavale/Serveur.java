@@ -66,17 +66,35 @@ public class Serveur
 			outDeux.println("Fin de la phase de préparation. Début de la phase d'attaque...");
 
 			boolean partieFinie = Serveur.jeu.partieTerminee ( );
-			
+			boolean touche;
+
 			while ( !partieFinie )
 			{
 				outDeux.println("ATTENTE");
-				attaquer ( 1, inUn, outUn );
+
+				do
+				{
+					touche = attaquer ( 1, inUn, outUn );
+					outDeux.println(Serveur.jeu.toString(2));
+					if (touche) outDeux.println("Vous avez été touché !");
+				}
+				while (touche);
+
 				outDeux.println("ATTENTE");
 
+				touche = false;
 				if ( !Serveur.jeu.partieTerminee ( ) )
 				{
 					outUn.println("ATTENTE");
-					attaquer ( 2, inDeux, outDeux );
+
+					do
+					{
+						touche = attaquer ( 2, inDeux, outDeux );
+						outUn.println(Serveur.jeu.toString(1));
+						if (touche) outUn.println("Vous avez été touché !");
+					}
+					while (touche);
+
 					outUn.println("ATTENTE");
 				}
 					
@@ -145,7 +163,7 @@ public class Serveur
 		catch ( IOException e ) { System.out.println ( "Erreur :\n" + e ); }
 	}
 
-	public static void attaquer(int joueur,  BufferedReader in, PrintWriter out)
+	public static boolean attaquer(int joueur,  BufferedReader in, PrintWriter out)
 	{
 		//Linux on peut écrire même si on a pas la main alors que sur windowns on ne peut pas du tout écrire
 		String pos;
@@ -167,7 +185,10 @@ public class Serveur
 				
 				out.println(Serveur.jeu.toString(joueur));
 				if (resAtk == 2)
+				{
 					out.println("Touché !");
+					return true;
+				}
 				else
 					if (resAtk == 1)
 						out.println("Plouf.");
@@ -176,5 +197,7 @@ public class Serveur
 			while ( resAtk == 0 || resAtk == 2);
 		}
 		catch ( IOException e ) { System.out.println ( "Erreur :\n" + e ); }
+
+		return false;
 	}
 }

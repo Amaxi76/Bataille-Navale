@@ -97,7 +97,7 @@ public class Bateau
 
 	public String toString()
 	{
-		String sRet = "Bateau de longeur : " + this.getTaille() + "au coordonnées : \n";
+		String sRet = "Bateau de longeur : " + this.getTaille() + "aux coordonnées : \n";
 
 		sRet += this.posDebut;
 		sRet += this.posFin;

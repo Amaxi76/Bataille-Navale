@@ -39,12 +39,14 @@ public class Plateau
 		if ( this.jeu.estTouche ( c, this ) )
 		{
 			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'X';
-			for ( Bateau b : this.bateaux )
+
+			for ( Bateau b : this.jeu.getBateau(this) )
 			{
 				for ( Coordonnees cos : b.getCoordonnees ( ) )
 					if ( c.getLig ( ) == cos.getLig ( ) && c.getCol ( ) == cos.getCol ( ) )
 						b.ajouterTouche ( c );
 
+				System.out.println("Bateau : " + b + " est coulé ? " + b.estCoule());
 				if ( b.estCoule ( ) )
 				{
 					System.out.println ( b.toString ( ) );
@@ -126,7 +128,6 @@ public class Plateau
 		}
 
 		return sRet;
-
 	}
 
 	public String toString()
@@ -154,5 +155,10 @@ public class Plateau
 				partieTerminee = false;
 		
 		return partieTerminee;
+	}
+
+	public Bateau[] getBateau()
+	{
+		return this.bateaux;
 	}
 }
