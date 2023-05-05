@@ -24,6 +24,10 @@ De plus, un test est réalisé pour que le bateau ne peuve faire une case de lon
 Pour guider les joueurs, nous lui disons la longueur du bateau qu'il doit créer, et combien lui en reste-t-il a créer, car nous les avons stockés dans une *ArrayList*.   
 
 Pour les plateaux, nous avons créé deux plateaux de 10 sur 10, les colonnes vont de **A** à **J** et les lignes de **1** à **10**.   
-Nous disposons d'une fonction **attaquer**, qui bien evidemmment fonctionne qui si les coordonnées sont dans le plateau, puis disposera une **X** sur son plateau attaque si un bateau ennemi a été touché. De même, cela disposera **O** si aucun bateau est touché, ce qui correspond dans le jeu au plouf. Et une boucle for est intégrée à cette fonction 
+Nous disposons d'une fonction **attaquer**, qui bien evidemmment fonctionne qui si les coordonnées sont dans le plateau, puis disposera une **X** sur son plateau attaque si un bateau ennemi a été touché. De même, cela disposera **O** si aucun bateau est touché, ce qui correspond dans le jeu au plouf. Et une boucle for est intégrée à cette fonction afin de parcourir la liste où toutes les coordonnées sont enregistrés et si elles sont toutes déjà touchées alors les **X** se transforme en **#** pour représenter le touché coulé.
 
 ## Problème rencontré
+
+## Amélioration possible
+Faire une interface en IHM
+
