@@ -1,4 +1,3 @@
-// inversion des bateaux coulés
 // "vous avez créé"
 // si joueur 1 touche, il rejoue LOGIQUE mais doit afficher pour joueur 2 ou il a touché
 // affichage des attaques de l'adversaire
@@ -46,11 +45,8 @@ public class Plateau
 					if ( c.getLig ( ) == cos.getLig ( ) && c.getCol ( ) == cos.getCol ( ) )
 						b.ajouterTouche ( c );
 
-				System.out.println("Bateau : " + b + " est coulé ? " + b.estCoule());
 				if ( b.estCoule ( ) )
 				{
-					System.out.println ( b.toString ( ) );
-					System.out.println ( b.getCoordonnees ( ) );
 					for ( Coordonnees cos : b.getCoordonnees ( ) )
 						this.pltAttaques [ cos.getLig ( ) - 1 ][ cos.getCol ( ) - 'A' ] = '#';
 				}

@@ -74,6 +74,14 @@ public class Jeu
 			return ensPlateaux[0].getBateau();
 	}
 
+	public int getPerdant()
+	{
+		if (this.ensPlateaux[0].partieTerminee()) return 1;
+		if (this.ensPlateaux[1].partieTerminee()) return 2;
+
+		return 0;
+	}
+
 		
 	public static void main(String[] args)
 	{

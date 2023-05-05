@@ -65,7 +65,7 @@ public class Client
 					if ( sRet.equals("La partie est terminée.")) partieEnCours = false;
 				}
 
-				if ( !attente )
+				if ( !attente && partieEnCours)
 					out.println ( Clavier.lireString ( ) );
 			}
 
@@ -74,11 +74,12 @@ public class Client
 
 			toServer.close();
 		}
-
 		catch (IOException ioe)
 		{
 			System.out.println("Erreur : \n" + ioe);
 		}
+
+		System.out.println("Vous avez été déconnecté.");
 	}
 
 	public static void attendre()
