@@ -1,4 +1,3 @@
-// "vous avez créé"
 // si joueur 1 touche, il rejoue LOGIQUE mais doit afficher pour joueur 2 ou il a touché
 // affichage des attaques de l'adversaire
 
