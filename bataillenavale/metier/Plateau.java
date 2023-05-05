@@ -1,6 +1,5 @@
 // inversion des bateaux coulés
 // "vous avez créé"
-// bateaux diagonale
 // si joueur 1 touche, il rejoue LOGIQUE mais doit afficher pour joueur 2 ou il a touché
 // affichage des attaques de l'adversaire
 
@@ -18,35 +17,42 @@ public class Plateau
 	private Jeu      jeu;
 	private ArrayList<Coordonnees> attaques;
 
-	public Plateau(Jeu jeu)
+	public Plateau ( Jeu jeu )
 	{
 		this.pltBateaux  = new char[10][10];
-		this.initialiserTableau(this.pltBateaux);
 		this.pltAttaques = new char[10][10];
-		this.initialiserTableau(this.pltAttaques);
+
+		this.initialiserTableau ( this.pltBateaux  );
+		this.initialiserTableau ( this.pltAttaques );
+
 		this.bateaux     = new Bateau[5];
 		this.jeu         = jeu;
 		this.attaques    = new ArrayList<>();
 	}
 
-	public int attaquer(Coordonnees c)
+	public int attaquer ( Coordonnees c )
 	{
 		int iRet = 0;
-		if (c.getLig()-1 > Plateau.TAILLE || c.getCol() > (char)('A' + Plateau.TAILLE) || this.attaques.contains(c)) return 0;
 
-		if (this.jeu.estTouche(c, this))
+		if ( c.getLig ( )- 1 > Plateau.TAILLE || c.getCol ( ) > ( char ) ( 'A' + Plateau.TAILLE ) || this.attaques.contains ( c ) ) return 0;
+
+		if ( this.jeu.estTouche ( c, this ) )
 		{
 			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'X';
-			for (Bateau b : this.bateaux)
+			for ( Bateau b : this.bateaux )
 			{
-				for (Coordonnees cos : b.getCoordonnees())
-					if (c.getLig() == cos.getLig() && c.getCol() == cos.getCol())
-						b.ajouterTouche(c);
-				
-				System.out.println(b.estCoule());
-				if (b.estCoule())
-					for (Coordonnees cos : b.getCoordonnees())
-						this.pltAttaques[cos.getLig()-1][cos.getCol() - 'A'] = '#';
+				for ( Coordonnees cos : b.getCoordonnees ( ) )
+					if ( c.getLig ( ) == cos.getLig ( ) && c.getCol ( ) == cos.getCol ( ) )
+						b.ajouterTouche ( c );
+
+				if ( b.estCoule ( ) )
+				{
+					System.out.println ( b.toString ( ) );
+					System.out.println ( b.getCoordonnees ( ) );
+					for ( Coordonnees cos : b.getCoordonnees ( ) )
+						this.pltAttaques [ cos.getLig ( ) - 1 ][ cos.getCol ( ) - 'A' ] = '#';
+				}
+					
 			}
 			iRet = 2;
 		}
@@ -95,7 +101,7 @@ public class Plateau
 	{
 		for ( Bateau b : this.bateaux )
 			if ( b.getTaille() == taille && b.getPosDebut().getLig() == 0 && b.placerBateau ( posDeb, posFin, this.bateaux ))
-			{
+			{;
 				for ( Coordonnees cos : b.getCoordonnees ( ) )
 					this.pltBateaux[cos.getLig ( )-1][cos.getCol ( ) - 'A'] = 'B';
 

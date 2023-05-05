@@ -27,7 +27,14 @@ public class Bateau
 
 	public boolean placerBateau ( Coordonnees posDebut, Coordonnees posFin, Bateau[] ensBateaux )
 	{
-		if ( Math.abs ( posDebut.getLig ( ) - posFin.getLig ( ) ) + Math.abs ( posDebut.getCol ( ) - posFin.getCol ( ) ) + 1 != this.longueur ) return false;
+		int distanceLigne   = Math.abs ( posDebut.getLig ( ) - posFin.getLig ( ) );
+		int distanceColonne = Math.abs ( posDebut.getCol ( ) - posFin.getCol ( ) );
+
+		if ( distanceLigne > 0 && distanceColonne > 0 )
+			return false;
+
+		if ( distanceLigne + distanceColonne + 1 != this.longueur ) 
+			return false;
 
 		this.posDebut = posDebut;
 		this.posFin   = posFin;
@@ -86,6 +93,21 @@ public class Bateau
 		}
 
 		return tabCoordonnees;
+	}
+
+	public String toString()
+	{
+		String sRet = "Bateau de longeur : " + this.getTaille() + "au coordonnées : \n";
+
+		sRet += this.posDebut;
+		sRet += this.posFin;
+
+		sRet += "\nTouché au coordonnée : \n";
+
+		for ( Coordonnees c : this.coorTouche )
+			sRet += c.toString() + "\n";
+		
+		return sRet;
 	}
 
 }

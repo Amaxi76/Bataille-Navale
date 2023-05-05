@@ -65,8 +65,6 @@ public class Serveur
 			outUn  .println("Fin de la phase de préparation. Début de la phase d'attaque...");
 			outDeux.println("Fin de la phase de préparation. Début de la phase d'attaque...");
 
-			System.out.println ( "Etat de la partie : " + Serveur.jeu.partieTerminee ( ) );
-
 			boolean partieFinie = Serveur.jeu.partieTerminee ( );
 			
 			while ( !partieFinie )
@@ -85,8 +83,6 @@ public class Serveur
 
 				partieFinie = Serveur.jeu.partieTerminee ( );
 			}
-
-			System.out.println ( "Etat de la partie 2 : " + Serveur.jeu.partieTerminee ( ) );
 			
 			if ( Serveur.jeu.partieTerminee ( ) )
 			{
