@@ -18,6 +18,11 @@ public class Jeu
 		}
 	}
 
+	public boolean partieTerminee()
+	{
+		return this.ensPlateaux[0].partieTerminee() || this.ensPlateaux[1].partieTerminee();
+	}
+	
 	public boolean estTouche(Coordonnees c, Plateau plt)
 	{
 		if (plt.equals(this.ensPlateaux[0]))
@@ -45,7 +50,7 @@ public class Jeu
 			return this.ensPlateaux[1].getNbBateauNonPlace();
 	}
 
-	public boolean attaquer(int joueur, Coordonnees c)
+	public int attaquer(int joueur, Coordonnees c)
 	{
 		if (joueur == 1)
 			return this.ensPlateaux[0].attaquer(c);
@@ -58,8 +63,25 @@ public class Jeu
 		if (joueur == 1)
 			return this.ensPlateaux[0].toString();
 		else
-			return this.ensPlateaux[0].toString();
+			return this.ensPlateaux[1].toString();
 	}
+
+	public Bateau[] getBateau(Plateau plt)
+	{
+		if (plt.equals(ensPlateaux[0]))
+			return ensPlateaux[1].getBateau();
+		else
+			return ensPlateaux[0].getBateau();
+	}
+
+	public int getPerdant()
+	{
+		if (this.ensPlateaux[0].partieTerminee()) return 1;
+		if (this.ensPlateaux[1].partieTerminee()) return 2;
+
+		return 0;
+	}
+
 		
 	public static void main(String[] args)
 	{
@@ -92,5 +114,8 @@ public class Jeu
 		System.out.println(jeu.attaquer(1, new Coordonnees('A', 3)));
 		System.out.println(jeu.attaquer(1, new Coordonnees('A', 4)));
 		System.out.println(jeu.toString(1));
+
+		System.out.println("Joueur 2");
+		System.out.println(jeu.toString(2));
 	}
 }

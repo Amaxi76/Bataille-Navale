@@ -1,3 +1,6 @@
+// si joueur 1 touche, il rejoue LOGIQUE mais doit afficher pour joueur 2 ou il a touché
+// affichage des attaques de l'adversaire
+
 package bataillenavale.metier;
 
 import java.util.ArrayList;
@@ -12,42 +15,52 @@ public class Plateau
 	private Jeu      jeu;
 	private ArrayList<Coordonnees> attaques;
 
-	public Plateau(Jeu jeu)
+	public Plateau ( Jeu jeu )
 	{
 		this.pltBateaux  = new char[10][10];
-		this.initialiserTableau(this.pltBateaux);
 		this.pltAttaques = new char[10][10];
-		this.initialiserTableau(this.pltAttaques);
+
+		this.initialiserTableau ( this.pltBateaux  );
+		this.initialiserTableau ( this.pltAttaques );
+
 		this.bateaux     = new Bateau[5];
 		this.jeu         = jeu;
 		this.attaques    = new ArrayList<>();
 	}
 
-	public boolean attaquer(Coordonnees c)
+	public int attaquer ( Coordonnees c )
 	{
-		if (c.getLig()-1 > Plateau.TAILLE || c.getCol() > (char)('A' + Plateau.TAILLE) || this.attaques.contains(c)) return false;
+		int iRet = 0;
 
-		if (this.jeu.estTouche(c, this))
+		if ( c.getLig ( )- 1 > Plateau.TAILLE || c.getCol ( ) > ( char ) ( 'A' + Plateau.TAILLE ) || this.attaques.contains ( c ) ) return 0;
+
+		if ( this.jeu.estTouche ( c, this ) )
 		{
 			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'X';
-			for (Bateau b : this.bateaux)
-			{
-				for (Coordonnees cos : b.getCoordonnees())
-					if (c.getLig() == cos.getLig() && c.getCol() == cos.getCol())
-						b.ajouterTouche(c);
-				
-				if (b.estCoule())
-					for (Coordonnees cos : b.getCoordonnees())
-						this.pltAttaques[cos.getLig()-1][cos.getCol() - 'A'] = '#';
-			}
 
+			for ( Bateau b : this.jeu.getBateau(this) )
+			{
+				for ( Coordonnees cos : b.getCoordonnees ( ) )
+					if ( c.getLig ( ) == cos.getLig ( ) && c.getCol ( ) == cos.getCol ( ) )
+						b.ajouterTouche ( c );
+
+				if ( b.estCoule ( ) )
+				{
+					for ( Coordonnees cos : b.getCoordonnees ( ) )
+						this.pltAttaques [ cos.getLig ( ) - 1 ][ cos.getCol ( ) - 'A' ] = '#';
+				}
+					
+			}
+			iRet = 2;
 		}
 		else
-			this.pltAttaques[c.getLig()][c.getCol() - 'A'] = 'O';
+		{
+			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'O';
+			iRet = 1;
+		}
 		
-
 		this.attaques.add(c);
-		return true;
+		return iRet;
 	}
 
 	public void initialiserBateaux(int l1, int l2, int l3, int l4, int l5)
@@ -85,7 +98,7 @@ public class Plateau
 	{
 		for ( Bateau b : this.bateaux )
 			if ( b.getTaille() == taille && b.getPosDebut().getLig() == 0 && b.placerBateau ( posDeb, posFin, this.bateaux ))
-			{
+			{;
 				for ( Coordonnees cos : b.getCoordonnees ( ) )
 					this.pltBateaux[cos.getLig ( )-1][cos.getCol ( ) - 'A'] = 'B';
 
@@ -97,12 +110,12 @@ public class Plateau
 
 	public String afficherTableau(char[][] tab)
 	{
-		String sLigne= "+----+---+---+---+---+---+---+---+---+---+---+";
+		String sLigne =          "+----+---+---+---+---+---+---+---+---+---+---+";
 		String sRet   = sLigne + "\n|    | A | B | C | D | E | F | G | H | I | J | "+"\n"+sLigne+"\n";
 		
 		for (int lig = 0 ; lig < tab.length ; lig++)
 		{
-			sRet += "| " + String.format( "%2d",lig+1) + " ";
+			sRet += "| " + String.format( "%02d",lig+1) + " ";
 			for (int col = 0 ; col < tab.length ; col++)
 				sRet += "| " + tab[lig][col] + " ";
 
@@ -110,12 +123,15 @@ public class Plateau
 		}
 
 		return sRet;
-
 	}
 
 	public String toString()
 	{
-		return this.afficherTableau(this.pltAttaques) + "\n----------------------------------------------\n\n" + this.afficherTableau(this.pltBateaux);
+		return "Vos attaques :"                                 + "\n"    +
+		       this.afficherTableau(this.pltAttaques)           + "\n"    +
+		       "----------------------------------------------" + "\n\n"  +
+			   "Vos bateaux"                                    + "\n"    +
+		       this.afficherTableau(this.pltBateaux);
 	}
 
 	public void initialiserTableau(char[][] tab)
@@ -123,5 +139,21 @@ public class Plateau
 		for (int lig = 0 ; lig < tab.length ; lig++)
 			for (int col = 0 ; col < tab.length ; col++)
 				tab[lig][col] = ' ';
+	}
+
+	public boolean partieTerminee ( )
+	{
+		boolean partieTerminee = true;
+
+		for ( Bateau b : this.bateaux )
+			if ( !b.estCoule() )
+				partieTerminee = false;
+		
+		return partieTerminee;
+	}
+
+	public Bateau[] getBateau()
+	{
+		return this.bateaux;
 	}
 }

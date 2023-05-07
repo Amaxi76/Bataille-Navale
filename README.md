@@ -1,6 +1,6 @@
 # sae_2.03_grp_08
 
-**Nom :** Yanis Verdier / Maximilien Lesterlin / Célia Antunes   
+**Nom :** Yanis Verdier | Maximilien Lesterlin | Célia Antunes   
 **Groupe :** B équipe 08   
 **Année :** 2023   
 **IUT Le Havre - SAE** 
@@ -15,15 +15,19 @@ Nous avons donc réalisé notre bataille navale en java, avec une classe Bateau 
 
 ## Comment avons nous procédé
 
-Nos dossiers **.java** sont donc en relation avec notre serveur, qui permet aux deux joueurs d'échanger, et de jouer chacun leur tour. Les joueurs peuvent se connecter indépendamment, et une fois que le serveur les a accepté, la partie peut commencer.   
+Nos fichiers **.java** sont donc en relation avec notre serveur, qui permet aux deux joueurs d'échanger, et de jouer chacun leur tour. Les joueurs peuvent se connecter indépendamment, et une fois que le serveur les a acceptés, la partie peut commencer en se laissant guider par nos commentaires.   
 
-Le joueur peut rentrer les coordonnées de ses bateaux sur son plateau. Lors de la création des bateaux plusieurs test sont effectués afin d'éviter le plus d'erreurs possible.   
+Le joueur peut rentrer les coordonnées de ses bateaux sur son plateau. Lors de la création des bateaux, plusieurs tests sont effectués afin d'éviter le plus d'erreurs possibles.   
 Nos bateaux, par exemple ne peuvent pas se croiser, pour cela, lorsque nous créons un nouveau bateau, nous regardons dans notre *ArrayList* où les coordonnées sont stockées, s'ils sont déjà utilisées ou non. Si l'une des coordonnées est déjà présente le bateau ne pourra être créé.   
-De plus, un test est réalisé pour que le bateau ne peuve faire une case de longueur.   
+De plus, un test est réalisé pour que le bateau ne puisse pas faire qu'une case de longueur.   
 
 Pour guider les joueurs, nous lui disons la longueur du bateau qu'il doit créer, et combien lui en reste-t-il a créer, car nous les avons stockés dans une *ArrayList*.   
 
 Pour les plateaux, nous avons créé deux plateaux de 10 sur 10, les colonnes vont de **A** à **J** et les lignes de **1** à **10**.   
-Nous disposons d'une fonction **attaquer**, qui bien evidemmment fonctionne qui si les coordonnées sont dans le plateau, puis disposera une **X** sur son plateau attaque si un bateau ennemi a été touché. De même, cela disposera **O** si aucun bateau est touché, ce qui correspond dans le jeu au plouf. Et une boucle for est intégrée à cette fonction afin de parcourir la liste ou toutes les coordonnées sont enregistrés et si elles sont toutes déjà touché alors les **X** se transforme en **#** pour représenter le touché coulé.
+Nous disposons d'une fonction **attaquer**, qui bien évidemmment fonctionne que si les coordonnées sont dans le plateau, puis qui disposera une **X** sur son plateau attaque si un bateau ennemi a été touché. De même, cela disposera **O** si aucun bateau n'est touché, ce qui correspond dans le jeu au plouf. Et une boucle for est intégrée à cette fonction afin de parcourir la liste où toutes les coordonnées sont enregistrées et si elles sont toutes déjà touchées alors les **X** se transforment en **#** pour représenter le touché coulé.
 
 ## Problème rencontré
+aucun parce que mes 2 co-équipiers sont trop fort en java
+
+## Amélioration possible
+Faire une interface en IHM, en effet, nous nous sommes concentré à appliquer les vraies règles du jeu et faire un code java élaboré, mais une interface en IHM peut être envisageable, mais pendrait aussi beaucoup de temps.
