@@ -65,7 +65,7 @@ public class Serveur
 			outUn  .println("Fin de la phase de préparation. Début de la phase d'attaque...");
 			outDeux.println("Fin de la phase de préparation. Début de la phase d'attaque...");
 
-			boolean touche;
+			int touche = 0;
 
 			while ( !Serveur.jeu.partieTerminee() )
 			{
@@ -74,26 +74,26 @@ public class Serveur
 
 				do
 				{
-					touche = attaquer ( 1, inUn, outUn );
+					touche = attaquer ( 1, inUn, outUn, touche );
 					outDeux.println(Serveur.jeu.toString(2));
-					if (touche) outDeux.println("Vous avez été touché !");
+					if (touche > 0) outDeux.println("Vous avez été touché !");
 				}
-				while (touche && !Serveur.jeu.partieTerminee());
+				while (touche > 0 && !Serveur.jeu.partieTerminee());
 
 				outDeux.println("ATTENTE");
 
-				touche = false;
+				touche = 0;
 				if ( !Serveur.jeu.partieTerminee ( ) )
 				{
 					outUn.println("ATTENTE");
 					outUn.println("Le joueur 2 attaque...");
 					do
 					{
-						touche = attaquer ( 2, inDeux, outDeux );
+						touche = attaquer ( 2, inDeux, outDeux, touche );
 						outUn.println(Serveur.jeu.toString(1));
-						if (touche) outUn.println("Vous avez été touché !");
+						if (touche > 0) outUn.println("Vous avez été touché !");
 					}
-					while (touche && !Serveur.jeu.partieTerminee());
+					while (touche > 0 && !Serveur.jeu.partieTerminee());
 
 					outUn.println("ATTENTE");
 				}
@@ -185,41 +185,38 @@ public class Serveur
 		catch ( IOException e ) { System.out.println ( "Erreur :\n" + e ); }
 	}
 
-	public static boolean attaquer(int joueur,  BufferedReader in, PrintWriter out)
+	public static int attaquer(int joueur,  BufferedReader in, PrintWriter out, int derniereAttaque)
 	{
-		//Linux on peut écrire même si on a pas la main alors que sur windowns on ne peut pas du tout écrire
 		String pos;
 		pos = "";
-		int resAtk;
+		int resAtk = 0;
 		try
 		{
 
 			do
 			{
 				out.println(Serveur.jeu.toString(joueur));
+
+				// Affichage selon la dernière attaque (de manière à ce que cela s'affiche après le toString())
+				if (derniereAttaque >= 1) out.println("Touché !");
+					if (derniereAttaque == 2) out.println("Coulé !");
+
 				out.println("Entrez les coordonnées de votre attaque.");
 				pos = in.readLine();
 				if ( pos.length ( ) != 3) out.println ( "Erreur de format. Exemples : A02, E04, H10" );
-			} while ( pos != null && pos.length ( ) != 3);
+			} while ( pos != null && pos.length ( ) != 3 || !( ( pos.charAt ( 0 ) >= 'A' && pos.charAt ( 0 ) <= 'J' ) && ( pos.charAt ( 1 ) == '0' || pos.charAt ( 1 ) == '1' ) && ( pos.charAt ( 2 ) >= '0' && pos.charAt ( 2 ) <= '9' ) ));
 
 			System.out.println("Joueur " + joueur + " attaque en " + new Coordonnees ( pos.charAt(0), Integer.parseInt("" + pos.charAt(1) + pos.charAt(2))));
 			
 			resAtk = Serveur.jeu.attaquer(joueur, new Coordonnees ( pos.charAt(0), Integer.parseInt("" + pos.charAt(1) + pos.charAt(2)) ));
 			
 			out.println(Serveur.jeu.toString(joueur));
-			if (resAtk == 2)
-			{
-				out.println("Touché !");
-				return true;
-			}
-			else
-				if (resAtk == 1)
-					out.println("Plouf.");
+			if (resAtk == 0)
+				out.println("Plouf.");
 
-			             //while ( resAtk == 0 || resAtk == 2); (Ancienne condition mais jla garde au cas ou)
 		}
 		catch ( IOException e ) { System.out.println ( "Erreur :\n" + e ); }
 
-		return false;
+		return resAtk;
 	}
 }

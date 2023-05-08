@@ -1,6 +1,3 @@
-// si joueur 1 touche, il rejoue LOGIQUE mais doit afficher pour joueur 2 ou il a touché
-// affichage des attaques de l'adversaire
-
 package bataillenavale.metier;
 
 import java.util.ArrayList;
@@ -30,12 +27,14 @@ public class Plateau
 
 	public int attaquer ( Coordonnees c )
 	{
-		int iRet = 0;
+		int iRet;
 
-		if ( c.getLig ( )- 1 > Plateau.TAILLE || c.getCol ( ) > ( char ) ( 'A' + Plateau.TAILLE ) || this.attaques.contains ( c ) ) return 0;
+		//if ( c.getLig ( )- 1 > Plateau.TAILLE || c.getCol ( ) > ( char ) ( 'A' + Plateau.TAILLE ) || this.attaques.contains ( c ) ) return 0;
+		// ne sert plus à rien car le client ne peut pas rentrer de coordonnées invalides (cf l.204 du Serveur.java)
 
 		if ( this.jeu.estTouche ( c, this ) )
 		{
+			iRet = 1;
 			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'X';
 
 			for ( Bateau b : this.jeu.getBateau(this) )
@@ -47,20 +46,40 @@ public class Plateau
 				if ( b.estCoule ( ) )
 				{
 					for ( Coordonnees cos : b.getCoordonnees ( ) )
+					{
 						this.pltAttaques [ cos.getLig ( ) - 1 ][ cos.getCol ( ) - 'A' ] = '#';
+						if ( c.getLig ( ) == cos.getLig ( ) && c.getCol ( ) == cos.getCol ( ) ) iRet = 2;
+					}
 				}
-					
 			}
-			iRet = 2;
 		}
 		else
 		{
 			this.pltAttaques[c.getLig()-1][c.getCol() - 'A'] = 'O';
-			iRet = 1;
+			iRet = 0;
 		}
 		
 		this.attaques.add(c);
 		return iRet;
+	}
+
+	// Cette méthode met à jour le plateau des bateaux afin d'afficher les attaques de l'adversaire
+	public void majPlateau(Coordonnees c)
+	{
+		System.out.println(c);
+		if (this.pltBateaux[c.getLig()-1][c.getCol()-'A'] == 'B')
+		{
+			this.pltBateaux[c.getLig()-1][c.getCol()-'A'] = 'X';
+
+			for (Bateau b : this.bateaux)
+				if (b.estCoule())
+					for (Coordonnees cos : b.getCoordonnees())
+						this.pltBateaux[cos.getLig()-1][cos.getCol()-'A'] = '#';
+		}
+		else
+		{
+			this.pltBateaux[c.getLig()-1][c.getCol()-'A'] = 'O';
+		}
 	}
 
 	public void initialiserBateaux(int l1, int l2, int l3, int l4, int l5)

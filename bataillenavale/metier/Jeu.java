@@ -26,10 +26,10 @@ public class Jeu
 	public boolean estTouche(Coordonnees c, Plateau plt)
 	{
 		if (plt.equals(this.ensPlateaux[0]))
-			if (this.ensPlateaux[1].contientBateau(c)) return true;
+			return this.ensPlateaux[1].contientBateau(c);
 
 		if (plt.equals(this.ensPlateaux[1]))
-			if (this.ensPlateaux[0].contientBateau(c)) return true;
+			return this.ensPlateaux[0].contientBateau(c);
 
 		return false;
 	}
@@ -52,10 +52,20 @@ public class Jeu
 
 	public int attaquer(int joueur, Coordonnees c)
 	{
+		int attaque; //0 = pas touché | 1 = touché pas coulé | 2 = coulé
+
 		if (joueur == 1)
-			return this.ensPlateaux[0].attaquer(c);
+		{
+			attaque = this.ensPlateaux[0].attaquer(c);
+			this.ensPlateaux[1].majPlateau(c);
+		}
 		else
-			return this.ensPlateaux[1].attaquer(c);
+		{
+			attaque = this.ensPlateaux[1].attaquer(c);
+			this.ensPlateaux[0].majPlateau(c);
+		}
+
+		return attaque;
 	}
 
 	public String toString(int joueur)
