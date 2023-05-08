@@ -32,4 +32,4 @@ Par la suite, nous avons, afin de respecter les vraies règles, fait en sorte qu
 aucun parce que mes 2 co-équipiers alias les bff sont trop fort en java
 
 ## Amélioration possible
-Faire une interface en IHM, en effet, nous nous sommes concentré à appliquer les vraies règles du jeu et faire un code java élaboré, mais une interface en IHM peut être envisageable, mais pendrait aussi beaucoup de temps.
+Faire une interface en IHM, en effet, nous nous sommes concentré à appliquer les vraies règles du jeu et faire un code java élaboré, mais une interface en IHM peut être envisageable, mais prendrait aussi beaucoup de temps.
