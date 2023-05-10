@@ -1,4 +1,3 @@
-./Client.java
 ./Serveur.java
 ./metier/Bateau.java
 ./metier/Coordonnees.java
