@@ -15,7 +15,7 @@ public class Client
 			boolean ecriture      = true;
 			try
 			{
-				Socket toServer = new Socket ( hostname, 9000 );
+				Socket toServer = new Socket ( hostname , 80 );
 
 				System.out.println ( "connexion au serveur..." );
 

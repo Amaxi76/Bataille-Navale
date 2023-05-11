@@ -15,7 +15,7 @@ public class Serveur
 	{
 		try
 		{
-			ServerSocket ss       = new ServerSocket ( 9000 );
+			ServerSocket ss       = new ServerSocket ( 80 );
 			
 			System.out.println ( "En attente des joueurs" );
 

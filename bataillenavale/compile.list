@@ -3,5 +3,3 @@
 ./metier/Coordonnees.java
 ./metier/Jeu.java
 ./metier/Plateau.java
-
-./Controleur.java
