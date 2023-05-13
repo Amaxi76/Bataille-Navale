@@ -8,14 +8,15 @@ public class Client
 {
 	public static void main(String[] arg)
 	{
-		try
+		/*try
 		{
-			String hostname = arg[0];
+			String hostname = arg[0];*/
 			boolean partieEnCours = true;
 			boolean ecriture      = true;
 			try
 			{
-				Socket toServer = new Socket ( hostname , 80 );
+				
+				Socket toServer = new Socket ( "localhost" , 9000 );
 
 				System.out.println ( "connexion au serveur..." );
 
@@ -83,11 +84,11 @@ public class Client
 			}
 
 			System.out.println("Vous avez été déconnecté.");
-		}
+		/*}
 		catch (Exception e)
 		{
 			System.out.println("Mauvais format d'exécution.\nFormat demandé : java Client [nom du serveur]");
-		}
+		}*/
 	}
 
 	public static void attendre()

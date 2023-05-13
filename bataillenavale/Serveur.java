@@ -1,4 +1,3 @@
-// Problème avec le false droit ou pas 
 package bataillenavale;
 
 import java.net.*;
@@ -15,7 +14,7 @@ public class Serveur
 	{
 		try
 		{
-			ServerSocket ss       = new ServerSocket ( 80 );
+			ServerSocket ss       = new ServerSocket ( 9000 );
 			
 			System.out.println ( "En attente des joueurs" );
 
