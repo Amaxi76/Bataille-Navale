@@ -2,6 +2,4 @@ javac /sae_2.03_grp_08/src/bataillenavale/Serveur.java ../sae_2.03_grp_08/src/ba
 
 cd /sae_2.03_grp_08/src
 
-echo $(hostname)
-
 java bataillenavale.Serveur
