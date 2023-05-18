@@ -1,3 +1,4 @@
+echo "coucou"
 echo $(pwd)
 
 cd ../sae_2.03_grp_08/src/bataillenavale
