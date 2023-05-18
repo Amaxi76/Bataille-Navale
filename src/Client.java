@@ -6,15 +6,15 @@ public class Client
 {
 	public static void main(String[] arg)
 	{
-		/*try
+		try
 		{
-			String hostname = arg[0];*/
+			String hostname = arg[0];
 			boolean partieEnCours = true;
 			boolean ecriture      = true;
 			try
 			{
 				
-				Socket toServer = new Socket ( "localhost" , 9000 );
+				Socket toServer = new Socket ( hostname , 9000 );
 
 				System.out.println ( "connexion au serveur..." );
 
@@ -25,18 +25,6 @@ public class Client
 				
 				// Bannière
 				System.out.println ( in.readLine ( ) );
-
-				/*boolean debut = false;
-				while (!debut)
-					if (in.readLine().equals("DEBUT")) debut = true;
-
-				boolean tour = false;
-				while (!tour)
-				{
-					String sRet = in.readLine();
-					if (sRet.equals("TOUR")) tour = true;
-					else                     System.out.println(sRet);
-				}*/
 
 				// Le client attend dès le début
 				boolean attente = true;
@@ -82,11 +70,11 @@ public class Client
 			}
 
 			System.out.println("Vous avez été déconnecté.");
-		/*}
+		}
 		catch (Exception e)
 		{
 			System.out.println("Mauvais format d'exécution.\nFormat demandé : java Client [nom du serveur]");
-		}*/
+		}
 	}
 
 	public static void attendre()
