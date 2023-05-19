@@ -2,10 +2,16 @@
 
 ## ℹ Introduction et Prérequis
 
-Notre projet est conçu 
+Notre projet est conçu pour fonctionner sur deux machines distinctes, donc sur deux terminals différents ( un par joueur et un pour le serveur ). 
 
-- Avoir une installation Java sur sa machine
+### Partie Serveur
+- Avoir une installation Java, git et Dockersur sa machine.
+- Avoir le port 9000 ouvert pour les connexions entrantes.
+
+### Partie Client 
+- Avoir une installation Java et git sur sa machine.
 - Posseder le fichier iut.algo disponible ici [le fichier](https://diw.iut.univ-lehavre.fr/pedago/info1/R1_01_Init_Dev/ressources/fichiersource/java_installation/iut.jar)
+
 
 ## ⚙️ Instalation du Serveur 
 
