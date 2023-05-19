@@ -8,19 +8,17 @@ RUN sudo -i
 
 RUN sudo apt-get install -y openjdk-11-jdk-headless
 
-RUN sudo apt-get install -y git
-
 RUN sudo apt-get clean
 
-RUN git clone https://github.com/Amaxi76/sae_2.03_grp_08.git
+COPY . /test
+WORKDIR /test/bataillenavale
 
-ADD . /test
+RUN chmod 777 lancement.sh
+
+RUN javac @compile.list -encoding utf-8
+
 WORKDIR /test
 
-CMD hostname
-
-RUN chmod +x lancement.sh
-
-CMD ./lancement.sh
+CMD java bataillenavale.Serveur
 
 EXPOSE 9000
