@@ -2,9 +2,8 @@
 
 ## ⚙️ Instalation du Serveur 
 
-- 1. Clonner le contenue de GitHub sur sa machine via :
-
-<code>git clone https://github.com/Amaxi76/docker-sae203.git
+1. Clonner le contenue de GitHub sur sa machine via :
+	git clone https://github.com/Amaxi76/docker-sae203.git
 
 ## ⚙️ Instalation du Client
 
