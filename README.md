@@ -70,7 +70,7 @@ javac Client.java -encoding utf8
 
 - Dans la partie Docker, la plus grosse difficulté a été la compilation des fichiers par le conteneur, mais aussi l'accès par tous les membres du réseau à la machine hôte.
 
-## Comment avons nous procédé
+## ❓ Comment avons nous procédé
 
 Nos fichiers **.java** sont donc en relation avec notre serveur, qui permet aux deux joueurs d'échanger, et de jouer chacun leur tour. En effet, nous avons utilisé nos connaissances en réseaux afin de pouvoir créer un serveur et des clients, communiquant entre eux. Les joueurs peuvent donc se connecter indépendamment, et une fois que le serveur les a acceptés, la partie peut commencer en se laissant guider par nos commentaires.   
 
