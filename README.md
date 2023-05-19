@@ -1,5 +1,12 @@
 # Bataille Navale - Multijoueur
 
+## ℹ Introduction et Prérequis
+
+Notre projet est con
+
+- Avoir une installation Java sur sa machine
+- Posseder le fichier iut.algo disponible ici [lien du fichier]https://diw.iut.univ-lehavre.fr/pedago/info1/R1_01_Init_Dev/ressources/fichiersource/java_installation/iut.jar
+
 ## ⚙️ Instalation du Serveur 
 
 1. Clonner le contenue de GitHub sur sa machine via : 
