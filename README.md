@@ -46,7 +46,7 @@ git clone https://github.com/Amaxi76/docker-sae203.git
 
 2. Se déplacer dans le dossier src :
 ```shell
-cd src
+cd docker-sae203/src
 ```
 
 3. Javac le fichier Client.java  :
