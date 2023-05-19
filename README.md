@@ -5,7 +5,7 @@
 Notre projet est conçu pour fonctionner sur deux machines distinctes, donc sur deux terminals différents ( un par joueur et un pour le serveur ). 
 
 ### Partie Serveur
-- Avoir une installation Java, git et Dockersur sa machine.
+- Avoir une installation Java, git et Dockersur sur sa machine.
 - Avoir le port 9000 ouvert pour les connexions entrantes.
 
 ### Partie Client 
@@ -22,7 +22,7 @@ git clone https://github.com/Amaxi76/docker-sae203.git
 
 2. Se déplacer dans le dossier src :
 ```shell
-cd src
+cd docker-sae203/src
 ```
 
 3. Construire un conteneur :
