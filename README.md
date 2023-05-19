@@ -64,18 +64,6 @@ Pour se connecter au serveur, ils suffient au deux joueurs de se connecter avec 
 javac Client.java -encoding utf8
 ```
 
-
-
-
-
-## Introduction
-
-Pour cette SAE, nous avons décidé de créer une bataille navale en ligne, deux joueurs pourront s'affronter. Nous avons d'abord eu une autre idée de projet, faire un sudoku, mais après réflexion, nous n'avons pas trouvé de lien avec **docker**.   
-
-## Principe du jeu
-
-Nous avons donc réalisé notre bataille navale en *java*, avec une classe **Bateau** permettant de créer des bateaux en entrant leur coordonnée de début puis de fin. Puis une classe **Plateau** qui affiche deux plateaux, un contenant les bateaux du joueur puis le second qui marquera au fur et à mesure les attaques qu'il a envoyé au joueur adverse. Le but est donc qu'un des joueurs est touchés coulé tous les bateaux du joueur adverse, représentés sur notre plateau par des #.  
-
 ## Comment avons nous procédé
 
 Nos fichiers **.java** sont donc en relation avec notre serveur, qui permet aux deux joueurs d'échanger, et de jouer chacun leur tour. En effet, nous avons utilisé nos connaissances en réseaux afin de pouvoir créer un serveur et clients, communiquant entre eux. Les joueurs peuvent donc se connecter indépendamment, et une fois que le serveur les a acceptés, la partie peut commencer en se laissant guider par nos commentaires.   
@@ -91,8 +79,14 @@ Nous disposons d'une fonction **attaquer**, qui bien évidemmment fonctionne que
 
 Par la suite, nous avons, afin de respecter les vraies règles, fait en sorte que le joueur rejoue si celui-ci a réussi à toucher une partie d'un bateau ennemi. La partie se terminera lorsque tous les bateaux du joueur adverse seront touchés coulés. Un message sera affiché chez les deux joueurs, adapté évidemment. L'un verra s'afficher *VICTOIRE bien joué* et l'autre *Vous avez perdu*. Une fois ce message apparu, cela signifie que la partie est terminée, de plus, les joueurs seront déconnectés automatiquement. Un message sera affiché également afin d'en informer les joueurs.
 
-## Problème rencontré
-aucun parce que mes 2 co-équipiers alias les bff sont trop fort en java
+## 💬 Problèmes rencontrés
 
-## Amélioration possible
-Faire une interface en IHM, en effet, nous nous sommes concentré à appliquer les vraies règles du jeu et faire un code java élaboré, mais une interface en IHM peut être envisageable, mais prendrait aussi beaucoup de temps.
+- Dans la partie Java, nous avons eu des difficultés à gérer les messages envoyés et reçus par le serveur tout en prenant en compte, quel joueur été autorisé à joueur.
+
+- Dans la partie Docker, la plus grosse difficulté a été la compilation des fichiers par le conteneur, mais aussi l'accès par tous les membres du réseau à la machine hôte.
+
+## ➕ Améliorations possibles
+
+- Avec du temps supplémentaire, une interface homme machine aurait pu être mise en place pour éviter l'interaction via un terminal.
+
+- Une autre amélioration possible, aurait été de faire plusieurs parties sur la même exécution pour pourvoir faire des statistiques.é
