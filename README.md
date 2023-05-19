@@ -1,9 +1,17 @@
-# sae_2.03_grp_08
+# Bataille Navale - Multijoueur
 
-**Nom :** Yanis Verdier | Maximilien Lesterlin | Célia Antunes   
-**Groupe :** B équipe 08   
-**Année :** 2023   
-**IUT Le Havre - SAE** 
+## ⚙️ Instalation du Serveur 
+
+	git clone https://github.com/Amaxi76/docker-sae203.git
+
+## ⚙️ Instalation du Client
+
+## 💻 Mise en service
+
+
+
+
+
 
 ## Introduction
 
