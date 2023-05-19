@@ -13,8 +13,6 @@ RUN sudo apt-get clean
 COPY . /test
 WORKDIR /test/bataillenavale
 
-RUN chmod 777 lancement.sh
-
 RUN javac @compile.list -encoding utf-8
 
 WORKDIR /test
