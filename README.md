@@ -26,7 +26,7 @@ Le serveur est prêt pour accueillir les deux joueurs.
 
 ## ⚙️ Instalation du Client
 
-1. Clonner le contenue de GitHub sur sa machine via ( pour le joueur n°2 ): 
+1. Clonner le contenue de GitHub sur sa machine via : 
 ```shell
 git clone https://github.com/Amaxi76/docker-sae203.git
 ```
@@ -41,13 +41,15 @@ cd src
 javac Client.java -encoding utf8
 ```
 
-3. Java le fichier Client.java  :
-```shell
-java Client.java [ nom de la machine hote du serveur ]
-```
+Vous êtes maintenant prêt à jouer ! 
 
 ## 💻 Mise en service
 
+Pour se connecter au serveur, ils suffient au deux joueurs de se connecter avec le client via :
+- Javac le fichier Client.java  :
+```shell
+javac Client.java -encoding utf8
+```
 
 
 
