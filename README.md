@@ -7,8 +7,44 @@
 git clone https://github.com/Amaxi76/docker-sae203.git
 ```
 
+2. Se déplacer dans le dossier src :
+```shell
+cd src
+```
+
+3. Construire un conteneur :
+```shell
+docker build -t bataillenavale .
+```
+
+4. Une fois que tout à fini d'être instatllé, lancer le docker :
+```shell
+docker run --rm -p 9000:9000 bataillenavale
+```
+
+Le serveur est prêt pour accueillir les deux joueurs.
 
 ## ⚙️ Instalation du Client
+
+1. Clonner le contenue de GitHub sur sa machine via ( pour le joueur n°2 ): 
+```shell
+git clone https://github.com/Amaxi76/docker-sae203.git
+```
+
+2. Se déplacer dans le dossier src :
+```shell
+cd src
+```
+
+3. Javac le fichier Client.java  :
+```shell
+javac Client.java -encoding utf8
+```
+
+3. Java le fichier Client.java  :
+```shell
+java Client.java [ nom de la machine hote du serveur ]
+```
 
 ## 💻 Mise en service
 
