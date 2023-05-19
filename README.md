@@ -2,8 +2,6 @@
 
 ## ⚙️ Instalation du Serveur 
 
-	dsqdqdq
-
 1. Clonner le contenue de GitHub sur sa machine via : 
 ```shell
 git clone https://github.com/Amaxi76/docker-sae203.git
