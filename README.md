@@ -61,7 +61,7 @@ Vous êtes maintenant prêt à jouer !
 Pour se connecter au serveur, ils suffient au deux joueurs de se connecter avec le client via :
 - Javac le fichier Client.java  :
 ```shell
-javac Client.java -encoding utf8
+java Client.java [nom de la machine hôte]
 ```
 
 ## 💬 Problèmes rencontrés
